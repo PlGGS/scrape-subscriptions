@@ -1,6 +1,8 @@
-###!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!BEFORE RUNNING THIS SCRIPT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!###
-###!!Download a copy of your https://www.youtube.com/feed/subscriptions into this directory as subs.html!!###
-###!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!###
+###!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!BEFORE RUNNING THIS SCRIPT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!###
+###! 1. Go to your https://www.youtube.com/feed/subscriptions !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!###
+###! 2. Click on "Show ### more" in the lefthand sidebar !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!###
+###! 3. Download a copy of your https://www.youtube.com/feed/subscriptions into this directory as subs.html !###
+###!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!###
 
 import os
 import sys
