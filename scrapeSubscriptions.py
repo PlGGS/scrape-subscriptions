@@ -15,40 +15,62 @@ HTMLFileToBeOpened = open("subs.html", "r")
 contents = HTMLFileToBeOpened.read()
 soup = BeautifulSoup(contents, 'html.parser')
   
-subs = set()
+subs = dict()
 
 for sub in soup.findAll('ytd-guide-entry-renderer', {'class': 'style-scope ytd-guide-section-renderer'}):
     if sub.find('yt-formatted-string').get_text():
-        subs.add(sub.text.strip())
+        subs[sub.text.strip()] = ''
 
 for sub in soup.findAll('ytd-guide-entry-renderer', {'class': 'style-scope ytd-guide-collapsible-entry-renderer'}):
     if sub.find('yt-formatted-string').get_text():
-        subs.add(sub.text.strip())
+        subs[sub.text.strip()] = ''
 
-subList = list(subs)
-subList.sort(key=str.lower)
+for a in soup.find_all('a', href=True, class_="yt-simple-endpoint style-scope ytd-guide-entry-renderer"):
+    subs[a['title']] = str(a.get_attribute_list('href')[0])
 
-subList.remove('Show 676 more')
-subList.remove('Show less')
-subList.remove('Show more')
-subList.remove('Movies & Shows')
-subList.remove('Gaming')
-subList.remove('Live')
-subList.remove('Fashion & Beauty')
-subList.remove('Learning')
-subList.remove('Sports')
-subList.remove('Creator Studio')
-subList.remove('YouTube Music')
-subList.remove('YouTube Kids')
-subList.remove('YouTube TV')
-subList.remove('Settings')
-subList.remove('Report history')
-subList.remove('Help')
-subList.remove('Send feedback')
+# print(subs)
 
-fileName = 'subscriptions ' + str(date.today()) + '.txt'
+# subs.sort(key=str.lower)
+
+subs.pop('Home')
+subs.pop('Explore')
+subs.pop('Shorts')
+subs.pop('Subscriptions')
+subs.pop('Originals')
+subs.pop('Browse channels')
+subs.pop('Library')
+subs.pop('History')
+subs.pop('Your videos')
+subs.pop('Watch later')
+subs.pop('Downloads')
+subs.pop('Liked videos')
+subs.pop('Show 676 more')
+subs.pop('Show less')
+subs.pop('Show more')
+subs.pop('Movies & Shows')
+subs.pop('Gaming')
+subs.pop('Live')
+subs.pop('Fashion & Beauty')
+subs.pop('Learning')
+subs.pop('Sports')
+subs.pop('Creator Studio')
+subs.pop('YouTube Music')
+subs.pop('YouTube Kids')
+subs.pop('YouTube TV')
+subs.pop('Settings')
+subs.pop('Report history')
+subs.pop('Help')
+subs.pop('Send feedback')
+
+sorted_subNames = sorted(subs, key=str.lower)
+sorted_subs = dict()
+
+for sub in sorted_subNames:
+  sorted_subs[sub] = subs[sub]
+
+fileName = 'subscriptions ' + str(date.today()) + '.csv'
 with open(fileName, 'w') as f:
-    for sub in subList:
-        f.write(sub+"\n")
+    for name, link in sorted_subs.items():
+        f.write(name + ',' + link + "\n")
 
-print('Outputed subscriptions to ' + fileName + '.txt')
+print('Outputed subscriptions to ' + fileName + '.csv')
