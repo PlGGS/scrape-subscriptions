@@ -14,23 +14,11 @@ if not (os.path.isfile('subs.html')):
 HTMLFileToBeOpened = open("subs.html", "r")
 contents = HTMLFileToBeOpened.read()
 soup = BeautifulSoup(contents, 'html.parser')
-  
+
 subs = dict()
-
-for sub in soup.findAll('ytd-guide-entry-renderer', {'class': 'style-scope ytd-guide-section-renderer'}):
-    if sub.find('yt-formatted-string').get_text():
-        subs[sub.text.strip()] = ''
-
-for sub in soup.findAll('ytd-guide-entry-renderer', {'class': 'style-scope ytd-guide-collapsible-entry-renderer'}):
-    if sub.find('yt-formatted-string').get_text():
-        subs[sub.text.strip()] = ''
 
 for a in soup.find_all('a', href=True, class_="yt-simple-endpoint style-scope ytd-guide-entry-renderer"):
     subs[a['title']] = str(a.get_attribute_list('href')[0])
-
-# print(subs)
-
-# subs.sort(key=str.lower)
 
 subs.pop('Home')
 subs.pop('Explore')
